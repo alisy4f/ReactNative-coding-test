@@ -7,7 +7,6 @@
  */
 
 import React, {useState} from 'react';
-import type {Node} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -39,7 +38,7 @@ import BookList from './src/BookList';
 import RootNavigation from './src/Routing';
 
 
-const App: () => Node = () => {
+const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
