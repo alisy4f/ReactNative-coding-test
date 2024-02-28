@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import type {Node} from 'react';
 import {
   SafeAreaView,
@@ -16,6 +16,9 @@ import {
   Text,
   useColorScheme,
   View,
+  Image,
+  TextInput,
+  TouchableOpacity
 } from 'react-native';
 
 import {
@@ -26,67 +29,123 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+import Splashscreen from './Splashscreen';
+import Home from './src/Home'
+
+import UserInfo from './src/UserInfo';
+import Book from './src/Book';
+import BookList from './src/BookList';
+
+import RootNavigation from './src/Routing';
+
 
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showInfo, setShowInfo] = useState(false);
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  function onLogin() {
+    console.log('email', email);
+    console.log('password', password);
+    setShowInfo(true);
+  }
+
+  function aa() {
+    
+  }
+
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <RootNavigation />
+    // <BookList />
+    // <Book />
+    // <View style={{
+    //   flex: 1,
+    //   backgroundColor: 'blue',
+    //   justifyContent: 'flex-end'
+    // }}>
+    //   <View
+    //     style={{
+    //       flex: 0.8,
+    //       justifyContent: 'space-between',
+    //       paddingVertical: 10,
+    //       alignItems: 'center'
+    //     }}
+    //   >
+    //     <View>
+    //       <Text style={{
+    //         fontSize: 40,
+    //         color: 'white'
+    //       }}>
+    //         FACEBOOK
+    //       </Text>
+    //       {
+    //         showInfo ?
+    //           <UserInfo 
+    //             email={email}
+    //             password={password}
+    //           />
+    //         : null
+    //       }
+    //     </View>
+    //     <View style={{
+    //       width: '90%'
+    //     }}>
+    //       <TextInput
+    //         placeholder='Masukkan Email'
+    //         placeholderTextColor='red'
+    //         style={{
+    //           width: '100%',
+    //           paddingHorizontal: 15,
+    //           paddingVertical: 10,
+    //           backgroundColor: 'white'
+    //         }}
+    //         value={email}
+    //         onChangeText={(text) => setEmail(text)}
+    //       />
+    //       <TextInput
+    //         placeholder='Masukkan Password'
+    //         style={{
+    //           width: '100%',
+    //           paddingVertical: 10,
+    //           paddingHorizontal: 15,
+    //           backgroundColor: 'white',
+    //           marginTop: 15
+    //         }}
+    //         value={password}
+    //         onChangeText={(text) => setPassword(text)}
+    //         secureTextEntry={true}
+    //       />
+    //       <TouchableOpacity
+    //         style={{
+    //           width: '100%',
+    //           paddingVertical: 10,
+    //           alignItems: 'center',
+    //           justifyContent: 'center',
+    //           marginTop: 20,
+    //           backgroundColor: 'indigo'
+    //         }}
+    //         onPress={onLogin}
+    //       >
+    //         <Text style={{fontSize: 18, color: 'white'}}>Login</Text>
+    //       </TouchableOpacity>
+    //     </View>
+    //     <View style={{
+    //       width: '100%',
+    //       justifyContent: 'center',
+    //       alignItems: 'center'
+    //     }}>
+    //       <Text style={{
+    //         color: 'white',
+    //         fontWeight: '500'
+    //       }}>Sign Up for Facebook</Text>
+    //     </View>
+    //   </View>
+    // </View>
   );
 };
 
