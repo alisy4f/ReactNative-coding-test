@@ -5,6 +5,9 @@ import useFirebaseNotification from './utils/useNotification';
 
 import Book from './Book';
 import Detail from './Detail';
+import Login from './Login';
+import SplashScreen from '../Splashscreen';
+import List from './List';
 
 const Stack = createNativeStackNavigator();
 
@@ -41,7 +44,14 @@ const RootNavigation = () => {
          setNavigationReady(true);
       }}
       >
-         <Stack.Navigator>
+         <Stack.Navigator
+            screenOptions={{
+               headerShown: false
+            }}
+         >
+            <Stack.Screen name='List' component={List} />
+            <Stack.Screen name='SplashScreen' component={SplashScreen} />
+            <Stack.Screen name='Login' component={Login} />
             <Stack.Screen name='Book' component={Book} />
             <Stack.Screen name='Detail' component={Detail} />
          </Stack.Navigator>
