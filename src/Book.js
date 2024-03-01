@@ -3,10 +3,8 @@ import {
    View,
    Text,
    Image,
-   Dimensions,
    TouchableOpacity,
    ScrollView,
-   FlatList
 } from 'react-native'
 
 const Book = ({navigation, route}) => {
@@ -28,10 +26,10 @@ const Book = ({navigation, route}) => {
       }
    };
 
+
    useEffect(() => {
       getData();
    },[])
-   // console.log('dataApi', dataApi);
 
    return(
       <View

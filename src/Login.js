@@ -31,6 +31,7 @@ const Login = ({navigation, route}) => {
       if (content) {
          if (content.token) {
             getDataUser(content.token)
+            navigation.navigate('Book');
          }
       }
    }
